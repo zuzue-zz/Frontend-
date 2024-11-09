@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<!-- Payment Page -->
+<section class="container mx-auto p-6 mt-2">
+    <h1 class="text-3xl font-bold text-center mb-8">Payment</h1>
+
+    <div class="flex flex-wrap justify-center">
+        <!-- Payment Form Card -->
+        <div class="w-full md:w-2/3 lg:w-1/2 bg-white p-8 rounded-lg shadow-lg">
+            <!-- Order Summary -->
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold mb-4">Order Summary</h2>
+                <p class="text-gray-700"><strong>Movie:</strong> Inception</p>
+                <p class="text-gray-700"><strong>Date:</strong> 2024-02-12</p>
+                <p class="text-gray-700"><strong>Time:</strong> 7:00 PM</p>
+                <p class="text-gray-700"><strong>Seats:</strong> A12, A13</p>
+                <p class="text-gray-700"><strong>Total Amount:</strong> $25.00</p>
+            </div>
+
+            <!-- Payment Information Form -->
+            <form action="payment_process.php" method="POST">
+                <h2 class="text-2xl font-semibold mb-4">Payment Information</h2>
+
+                <!-- Card Number -->
+                <div class="mb-4">
+                    <label for="card-number" class="block text-gray-700 font-semibold">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200">
+                </div>
+
+                <!-- Expiration Date and CVV -->
+                <div class="flex mb-4 space-x-4">
+                    <div class="w-1/2">
+                        <label for="expiry-date" class="block text-gray-700 font-semibold">Expiration Date</label>
+                        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200">
+                    </div>
+                    <div class="w-1/2">
+                        <label for="cvv" class="block text-gray-700 font-semibold">CVV</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="123" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200">
+                    </div>
+                </div>
+
+                <!-- Cardholder Name -->
+                <div class="mb-6">
+                    <label for="cardholder-name" class="block text-gray-700 font-semibold">Cardholder Name</label>
+                    <input type="text" id="cardholder-name" name="cardholder-name" placeholder="Full Name" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200">
+                </div>
+
+                <!-- Submit Payment -->
+                <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded hover:bg-blue-600">Complete Payment</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

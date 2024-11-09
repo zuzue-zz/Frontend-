@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<!-- Profile Page -->
+<section class="container mx-auto p-6 mt-10">
+    <h1 class="text-3xl font-bold text-center mb-8">Your Profile</h1>
+
+    <div class="flex flex-wrap justify-center">
+        <!-- Profile Details Card -->
+        <div class="w-full md:w-2/3 lg:w-1/2 bg-white p-8 rounded-lg shadow-lg">
+            <!-- Profile Picture and Name -->
+            <div class="flex items-center mb-6">
+                <img src="https://via.placeholder.com/100" alt="User Profile" class="w-24 h-24 rounded-full mr-4">
+                <div>
+                    <h2 class="text-2xl font-semibold">John Doe</h2>
+                    <p class="text-gray-500">johndoe@example.com</p>
+                </div>
+            </div>
+
+            <!-- Personal Info -->
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">Personal Information</h3>
+                <p><strong>Phone:</strong> +123 456 7890</p>
+                <p><strong>Joined:</strong> January 2023</p>
+                <p><strong>Location:</strong> City, Country</p>
+            </div>
+
+            <!-- Ticket Purchase History -->
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">Ticket Purchase History</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Movie: Inception - Date: 2024-02-12 - Seat: A12</li>
+                    <li>Movie: Avatar 2 - Date: 2024-01-25 - Seat: B8</li>
+                    <li>Movie: The Dark Knight - Date: 2024-01-15 - Seat: C4</li>
+                </ul>
+            </div>
+
+            <!-- Settings -->
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">Account Settings</h3>
+                <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mb-2">Update Profile</button>
+                <button class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">Delete Account</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

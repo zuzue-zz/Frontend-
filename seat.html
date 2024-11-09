@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Booking - Masha & Bear</title>
+    <style type="text/css">
+      * {
+        /* margin: 0; */
+        /* padding: 0; */
+        box-sizing: border-box;
+      }
+
+      :root {
+        --db: rgba(171, 226, 228, 0.459);
+        --ge: rgba(163, 229, 231, 0.301);
+        --ws: rgb(211, 211, 211);
+        --bs: #262727b9;
+        --wh: #131212;
+        --hc: #cf803fbe;
+        --sg: rgba(12, 192, 162, 0.938);
+        --tr: #df2f1c;
+        --bg: rgb(0, 128, 96);
+        --bgh: rgb(2, 78, 59);
+      }
+
+      body {
+        font-family: sans-serif;
+        background-color: var(--ws);
+        color: var(--wh);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 1300px;
+        min-height: 300px;
+        padding: 20px;
+        background-color: var(--ge);
+        box-shadow: 0 3px 3px 3px var(--bs);
+      }
+
+      header .steps {
+        display: flex;
+        justify-content: space-between;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+
+      .movie-section {
+        display: flex;
+        column-gap: 30px;
+      }
+
+      .movie-details {
+        width: 30%;
+        text-align: center;
+        border-radius: 5px 0;
+        background-color: var(--db);
+        box-shadow: 0 3px 3px 3px var(--bs);
+      }
+
+      .movie-details img {
+        width: 378px;
+        height: 550px;
+        border-radius: 5px 0 0 0;
+      }
+
+      .movie-info {
+        /* margin-top: 10px; */
+        padding: 20px 0 30px 20px;
+      }
+
+      .movie-info h1 {
+        font-family: cursive;
+        color: var(--wh);
+      }
+
+      .movie-info p {
+        margin-top: 15px;
+        font-size: 20px;
+        text-align: left;
+      }
+
+      .date-selection,
+      .time-selection,
+      .seating {
+        margin-bottom: 30px;
+      }
+
+      .date-selection h2,
+      .time-selection h2,
+      .seating h2 {
+        font-size: 23px;
+        font-family: cursive;
+        margin-bottom: 15px;
+      }
+
+      .date-selection button,
+      .time-selection button {
+        width: 42px;
+        height: 40px;
+        margin: 10px 0 0 10px;
+        border: none;
+        background-color: unset;
+        color: var(--wh);
+        font-size: 15px;
+      }
+
+      .date-options button.active,
+      .time-options button.selected {
+        background-color: var(--sg);
+        width: 50px;
+      }
+
+      .booking-section {
+        width: 70%;
+        /* background-color: #e67e22; */
+      }
+
+      .date-time-selection {
+        display: flex;
+      }
+
+      .date-selection {
+        width: 50%;
+      }
+
+      .lines {
+        width: 400px;
+        height: 1px;
+        background-color: #7f8c8d;
+      }
+
+      .seat-grid {
+        display: flex;
+        gap: 20px;
+      }
+
+      #seat-layout {
+        display: flex;
+        gap: 20px;
+      }
+
+      .seat-col-1,
+      .seat-col-3 {
+        width: 25%;
+        display: flex;
+        /* flex-flow: column wrap; */
+        flex-wrap: wrap;
+        /* flex-direction: column-reverse; */
+        align-content: flex-start;
+      }
+
+      .seat-col-2 {
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+      }
+
+      .seat-col-name {
+        margin-top: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        align-content: center;
+      }
+
+      .seat-name {
+        padding: 12px 0;
+        text-align: justify;
+      }
+
+      .seat {
+        width: 30px;
+        height: 30px;
+        background-color: #7f8c8d;
+        margin: 6px 5px;
+        border-radius: 10px;
+      }
+
+      .capseat {
+        display: flex;
+      }
+
+      .seating h2,
+      .capseat {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+
+      .capseat .seat {
+        margin-right: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .capseat span {
+        margin-left: 120px;
+      }
+      .seat.taken {
+        background-color: var(--tr);
+      }
+
+      .seat.selected {
+        background-color: var(--sg);
+      }
+
+      .proceed-button {
+        width: 200px;
+        height: 50px;
+        font-family: cursive;
+        font-size: 17px;
+        color: var(--wh);
+        padding: 5px;
+        /* background-color: var(--bg); */
+        background-color: var(--sg);
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 200ms linear;
+      }
+
+      .proceed-button:hover {
+        background-color: var(--bg);
+      }
+
+      @media (max-width: 800px) {
+        body {
+          font-size: 18px;
+        }
+        .movie-section {
+          flex-direction: column;
+        }
+        .date-time-selection {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .date-selection h2 {
+          margin-top: 17px;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .movie-details img {
+          width: 188px;
+          height: 400px;
+        }
+
+        .movie-details h1 {
+          font-size: 25px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .booking-section {
+          display: flex;
+          flex-direction: column;
+          margin-left: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="steps"></div>
+      </header>
+      <div class="movie-section">
+        <div class="movie-details">
+          <img src="masha.jpg" alt="masha" />
+          <div class="movie-info">
+            <h1>Masha & Bear</h1>
+            <p><strong>Director:</strong> ........</p>
+            <p>
+              <strong>Starring:</strong>
+              ........................................
+            </p>
+            <p><strong>Genre:</strong> ..................</p>
+          </div>
+        </div>
+        <div class="booking-section">
+          <div class="date-time-selection">
+            <div class="date-selection">
+              <h2>Select Date</h2>
+              <div class="lines"></div>
+              <div class="date-options">
+                <button type="button">Mon</button>
+                <button type="button" class="active">Tue</button>
+                <button type="button">Wed</button>
+                <button type="button">Thu</button>
+                <button type="button">Fri</button>
+                <button type="button">Sat</button>
+                <button type="button">Sun</button>
+              </div>
+            </div>
+            <!-- <hr/> -->
+            <div class="time-selection">
+              <h2>Select Show Time</h2>
+              <div class="lines"></div>
+              <div class="time-options">
+                <button type="button">10:00 AM</button>
+                <button type="button">12:30 PM</button>
+                <button type="button">03:00 PM</button>
+                <button type="button">05:30 PM</button>
+                <button type="button" class="selected">08:00 PM</button>
+                <button type="button">10:30 PM</button>
+              </div>
+            </div>
+          </div>
+          <!-- <hr/> -->
+          <div class="seating">
+            <h2>Select Seats</h2>
+            <div class="seat-grid">
+              <div class="seat-col-name">
+                <div class="seat-name"><span class="seat-name">A</span></div>
+                <div class="seat-name"><span class="seat-name">B</span></div>
+                <div class="seat-name"><span class="seat-name">C</span></div>
+                <div class="seat-name"><span class="seat-name">D</span></div>
+                <div class="seat-name"><span class="seat-name">E</span></div>
+                <div class="seat-name"><span class="seat-name">F</span></div>
+                <div class="seat-name"><span class="seat-name">G</span></div>
+                <div class="seat-name"><span class="seat-name">H</span></div>
+                <div class="seat-name"><span class="seat-name">I</span></div>
+                <div class="seat-name"><span class="seat-name">J</span></div>
+            </div>
+            <div id="seat-layout"></div>
+          </div>
+          <div class="capseat">
+            <div class="seat available"><span>Available</span></div>
+            <div class="seat selected"><span>Selected</span></div>
+            <div class="seat taken"><span>Taken</span></div>
+          </div>
+        </div>
+        <button class="proceed-button">Proceed to Payment</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const seatConfig = [
+      {
+        column: "seat-col-1",
+        seats: [
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+        ],
+      },
+      {
+        column: "seat-col-2",
+        seats: [
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+        ],
+      },
+      {
+        column: "seat-col-3",
+        seats: [
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "taken",
+          "available",
+          "available",
+          "available",
+          "taken",
+        ],
+      },
+    ];
+  
+    const seatLayoutContainer = document.getElementById("seat-layout");
+  
+    seatConfig.forEach((colConfig, index) => {
+      const colDiv = document.createElement("div");
+      colDiv.style.cursor = "pointer";
+      colDiv.classList.add(`seat-col-${index + 1}`);
+  
+      colConfig.seats.forEach((seatStatus) => {
+        const seatDiv = document.createElement("div");
+        seatDiv.classList.add("seat", seatStatus);
+        colDiv.appendChild(seatDiv);
+      });
+  
+      seatLayoutContainer.appendChild(colDiv);
+    });
+  
+    // Toggle seat selection
+    document.querySelectorAll(".seat.available").forEach((seat) => {
+      seat.addEventListener("click", () => {
+        seat.classList.toggle("selected");
+      });
+    });
+  
+    // Toggle active time selection
+    document.querySelectorAll(".time-options button").forEach((button) => {
+      button.addEventListener("click", () => {
+        document
+          .querySelectorAll(".time-options button")
+          .forEach((btn) => btn.classList.remove("selected"));
+        button.classList.add("selected");
+      });
+    });
+    // Toggle active date selection
+    document.querySelectorAll(".date-options button").forEach((button) => {
+          button.addEventListener("click", () => {
+            document
+              .querySelectorAll(".date-options button")
+              .forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+          });
+        });
+      </script>
+  </body>
+</html>

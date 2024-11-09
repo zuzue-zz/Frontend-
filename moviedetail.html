@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>testing 2</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+			:root{
+				--wrat: 50%;
+				--mag: 50px;
+			}
+
+			body{
+				max-width: 1600px;
+				height: 100vh;
+
+				margin: auto;
+
+				background-image: linear-gradient(
+				90deg,
+				rgba(8, 65, 122, 0.92) 5%,
+				rgba(3, 35, 67, 0.92) 30%,
+				rgba(2, 20, 39, 0.92)
+			);	
+
+			}
+
+		
+			.container nav{
+				height: 75px;
+				background: linear-gradient(
+				90deg,
+				rgba(8, 65, 122, 0.92) 5%,
+				rgba(3, 35, 67, 0.92) 30%,
+				rgba(2, 20, 39, 0.92)
+				);
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			nav input[type="text"]{
+				font-family: inherit;
+				padding: 10px 25px;
+				border: 1px solid #fff;
+				border-radius: 50px;
+
+				color: #fff;
+				background-color: transparent;
+				font-size: 15px;
+
+				margin-right: 250px;
+			}
+
+			.search::placeholder{
+				color: #f2f2f2;
+			}
+
+			nav > a{
+/*				display: block;*/
+				font-size: 15px;
+				color: #fff;
+				text-decoration: none;
+				padding: 10px 30px;
+				margin-top: 20px;
+				border-radius: 20px;
+			
+				transition: all .1s linear;
+			}
+
+			nav a:nth-of-type(1){
+				margin: 20px 30px;
+			}
+
+			nav a:nth-of-type(2){
+				margin: 20px 30px;
+			}
+
+			nav a:nth-of-type(3){
+				margin: 20px 0;
+			}
+
+			nav > a:hover{
+				color: #000;
+				background-color: #caf0f8;
+			}
+
+			.container .sub-container{
+				display: flex;
+				height: auto;
+			}
+
+			.container .sub-container .ldiv{
+				max-width: 350px;
+				height: 700px;
+/*				background-color: limegreen;*/
+			}
+
+			.ldiv .fig-box{
+				width: 100%;
+				height: 500px;
+/*				background-color: steelblue;*/
+			}
+
+			.fig-box img{
+				width: 290.56px; 
+				height: 480px;
+				margin: 20px 0 0 40px;
+				border-radius: 10px;
+				box-shadow: 0 2px 15px #000;
+			}
+
+			.ldiv .rating{
+				width: calc(100% - 40px);
+				height: 150px;
+				background-color: rgba(137, 194, 217,0.1);
+				border-radius: 10px;
+				margin: 40px;
+			}
+
+			.rating .bar{
+				width: 90%;
+				height: 5px;
+				background-color: #eee4e1;
+				border: 1px solid #000;
+				margin-top: 20px;
+				margin-left: 10px;
+
+				position: relative;
+			}
+
+
+			.rating .bar::before{
+				content: '';
+				width: var(--wrat);
+				height: 100%;
+				background: linear-gradient(
+ 					75deg,
+					#48cae4,
+					#0077b6,
+					#03045e,
+					#ade8f4,
+					#48cae4
+				);
+				background-size: 400px;
+
+				position: absolute;
+				left: 0;
+				top: 0;
+
+				animation: rating 10s linear infinite;
+			}
+
+			.container .sub-container .rdiv{
+				flex-wrap: 1;
+				height: 700ppx;
+/*				background-color: orange;*/
+			}
+
+			.rdiv .maintitle{
+				width: 861px;
+				height: 60px;
+/*				background-color: blue;*/
+				margin-left: var(--mag);
+			}
+
+			.rdiv .maintitle h2.title{
+				font-size: 35px;
+				color: #fff;
+				font-weight: bold;
+				letter-spacing: 1px;
+
+				margin-bottom: 0px;
+			}
+
+			.maintitle .dir{
+				font-size: 13px;
+				color: #C2C2C2;
+			}
+
+			.rdiv .info{
+				width: 70%;
+			/*	background-color: pink;*/
+				margin-top: 120px;
+				margin-left: var(--mag);
+			}
+
+			.info .dateandtime{
+				display: flex;
+			}
+
+			.info .dateandtime span{
+				display: block;
+
+				font-size: 14px;
+				color: #C2C2C2;
+				margin-right: 50px;
+				margin-bottom: 15px;
+			}
+
+			.info .type span{
+				font-size: 15px;
+				font-weight: 600;
+				color: #C2C2C2;
+			}
+
+			.info .vdo{
+				display: flex;
+			}
+
+			.vdo .trail,.vdo .movie{
+				width: 180px;
+				height: 50px;
+				color: #000;
+				text-decoration: none;
+				background-color: #f4f4f4;
+				border-radius: 40px;
+				margin: 20px;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+			}
+
+			.info .vdo span{
+				margin-left: 10px;
+			}
+
+			.rdiv .review-box{
+				width: 80%;
+				margin-left: var(--mag);
+			}
+
+			.review-box .review{
+				color: #E3E3E3;
+				line-height: 1.5;
+				letter-spacing: 0.3px;
+			}
+
+
+			@keyframes rating{
+				0%{
+					background-position: 0;
+					}
+					50%{
+						background-position: 500% 0;			
+					}
+					100%{
+						background-position: 0 0;
+					}
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="container">
+
+			<nav>
+				<input type="text" class="search" placeholder="search.." autofocus />
+				<a href="#"><i class="fa-solid fa-house"></i><span style="margin-left: 5px;">Home</span></a>
+				<a href="#"></i><span  style="margin-left: 5px;">Sign In</span></a>
+				<a href="#"><i class="fa-solid fa-gear"></i><span style="margin-left: 5px;">Setting</span></a>
+			</nav>
+
+			<div class="sub-container">
+
+				<div class="ldiv">
+					<div class="fig-box">
+						<img src="./img/blackpearl.JPEG" />
+					</div>
+					<div class="rating">
+						<p style="color:#fff;margin:10px">Rating</p>
+						<div class="bar"></div>
+					</div>
+				</div>
+
+				<div class="rdiv">
+					<div class="maintitle" style="max-width:861px">
+						<h2 class="title">Pirate Of Caribbean</h2>
+						<span class="dir">directed by Who..</span>
+					</div>
+					<div class="info">
+						<div class="dateandtime">
+							<span class="date"><i class="fa-solid fa-calendar-days"></i><em style="margin-left:5px">1920</em></span>
+							<span class="time"><i class="fa-regular fa-clock"></i><em style="margin-left:5px">1:30</em></span>
+						</div>
+						<div class="type">
+							<span>Adventure,bla bla bla</span>
+						</div>
+						<div class="vdo">
+							<a href="#" class="trail"><i class="fa-solid fa-play"></i><span>Trailer</span></a>
+							<a href="#" class="movie"><i class="fa-solid fa-play"></i><span>Watch Free</span></a>
+						</div>
+						</div>
+						<div class="review-box">
+							<p class="review">
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+							</p>
+						</div>
+				</div>
+
+			</div>
+
+		</div>
+		
+	</body>
+</html>
